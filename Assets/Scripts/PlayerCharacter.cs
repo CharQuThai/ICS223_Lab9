@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCharacter : MonoBehaviour
 {
     [SerializeField] private UIController uiController;
+
+    [SerializeField] public Image healthBar;
+
 
     private int health;
 
@@ -29,8 +33,8 @@ public class PlayerCharacter : MonoBehaviour
 
         Debug.Log("Health: " + health);
 
-        Color healthColour = Color.Lerp(Color.green, Color.red, healthPercentage);
-        uiController.healthBar.color = healthColour;
+       // Color healthColour = Color.Lerp(Color.green, Color.red, healthPercentage);
+        //healthBar.color = healthColour;
 
         if (health == 0)
         {

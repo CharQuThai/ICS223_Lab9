@@ -105,5 +105,9 @@ public class UIController : MonoBehaviour
     void OnHealthChanged(float healthPercent)
     {
         Debug.Log(this + ".ohc: " +  healthPercent);
+
+        healthBar.fillAmount = healthPercent;
+        healthBar.color = Color.Lerp(Color.red, Color.green, healthPercent);
+
     }
 }
