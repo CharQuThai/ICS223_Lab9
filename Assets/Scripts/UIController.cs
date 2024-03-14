@@ -7,21 +7,24 @@ using TMPro;
 public class UIController : MonoBehaviour
 {
 
-    private int score = 0;
+    //private int score = 0;
 
     [SerializeField] private TextMeshProUGUI scoreValue;
 
-    [SerializeField] private Image healthBar;
+    [SerializeField] public Image healthBar;
 
     [SerializeField] private Image crossHair;
 
     [SerializeField] private OptionsPopup optionsPopup;
 
     [SerializeField] private SettingPopup settingPopup;
+
+    [SerializeField] private PlayerCharacter playerCharacter;
+
     // Start is called before the first frame update
     void Start()
     {
-        UpdateScore(score);
+        //UpdateScore(score);
 
         healthBar.fillAmount = 1;
         healthBar.color = Color.green;
@@ -88,4 +91,19 @@ public class UIController : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        Messenger<float>.AddListener(GameEvent.HEALTH_CHANGED, OnHealthChanged);
+    }
+
+    private void OnDestroy()
+    {
+        Messenger<float>.RemoveListener(GameEvent.HEALTH_CHANGED, OnHealthChanged);
+    }
+
+
+    void OnHealthChanged(float healthPercent)
+    {
+        Debug.Log(this + ".ohc: " +  healthPercent);
+    }
 }

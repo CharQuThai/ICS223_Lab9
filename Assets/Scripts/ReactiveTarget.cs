@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ReactiveTarget : MonoBehaviour
 {
-
+    bool isAlive = true;
     public void ReactToHit()
     {
         WanderingAI enemyAI = GetComponent<WanderingAI>();
@@ -18,6 +18,11 @@ public class ReactiveTarget : MonoBehaviour
         if (enemyAnimator != null)
         {
             enemyAnimator.SetTrigger("Die");
+        }
+        if (isAlive == true)
+        {
+            isAlive = false;
+            Messenger.Broadcast(GameEvent.ENEMY_DEAD);
         }
 
         //StartCoroutine(Die());

@@ -3404,6 +3404,7 @@ MonoBehaviour:
   crossHair: {fileID: 1820643154}
   optionsPopup: {fileID: 362762666}
   settingPopup: {fileID: 271782901}
+  playerCharacter: {fileID: 0}
 --- !u!1 &584803943
 GameObject:
   m_ObjectHideFlags: 0
@@ -6779,6 +6780,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 14144168796531695, guid: cc879372dd9df984e9135397751f8419, type: 3}
   iguana: {fileID: 8680041678661212095, guid: 11cbf34a44294a64a9ad8dd1f6b6a809, type: 3}
+  ui: {fileID: 551787717}
+  playerCharacter: {fileID: 1869878533}
 --- !u!4 &1381260614
 Transform:
   m_ObjectHideFlags: 0
@@ -13841,6 +13844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34342f049bb1c614c8e8559a3c46fc7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiController: {fileID: 0}
 --- !u!1 &1917941878
 GameObject:
   m_ObjectHideFlags: 0
