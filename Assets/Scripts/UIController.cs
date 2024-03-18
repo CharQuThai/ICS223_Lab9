@@ -21,13 +21,16 @@ public class UIController : MonoBehaviour
 
     [SerializeField] private PlayerCharacter playerCharacter;
 
+    private int popupsActive = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         //UpdateScore(score);
 
-        healthBar.fillAmount = 1;
-        healthBar.color = Color.green;
+        //healthBar.fillAmount = 1;
+        //healthBar.color = Color.green;
+        
 
     }
 
@@ -40,27 +43,41 @@ public class UIController : MonoBehaviour
         //    SetGameActive(false);
         //    optionsPopup.Open();
         //}
-        if (Input.GetKeyDown(KeyCode.Escape))
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    if (!optionsPopup.IsActive() && !settingPopup.IsActive())
+        //    {
+        //        SetGameActive(false);
+        //        optionsPopup.Open();
+        //    }
+        //    else if (optionsPopup.IsActive())
+        //    {
+        //        optionsPopup.Close();
+
+        //        if (settingPopup.IsActive())
+        //        {
+        //            settingPopup.Close();
+        //        }
+
+        //        SetGameActive(true);
+        //    }
+        //    else if (settingPopup.IsActive())
+        //    {
+        //        settingPopup.Close();
+        //        optionsPopup.Open();
+        //    }
+
+        //}
+        if (Input.GetKeyDown(KeyCode.Escape) && popupsActive == 0)
         {
-            if (!optionsPopup.IsActive() && !settingPopup.IsActive())
-            {
-                SetGameActive(false);
-                optionsPopup.Open();
-            }
-            else if (optionsPopup.IsActive())
-            {
-                optionsPopup.Close();
 
+            if (!optionsPopup.IsActive())
+            {
                 if (settingPopup.IsActive())
-                {
                     settingPopup.Close();
-                }
-
-                SetGameActive(true);
             }
-            else if (settingPopup.IsActive())
+            else
             {
-                settingPopup.Close();
                 optionsPopup.Open();
             }
         }
@@ -94,11 +111,15 @@ public class UIController : MonoBehaviour
     private void Awake()
     {
         Messenger<float>.AddListener(GameEvent.HEALTH_CHANGED, OnHealthChanged);
+        Messenger.AddListener(GameEvent.POPUP_OPENED, OnPopupOpened);
+        Messenger.AddListener(GameEvent.POPUP_CLOSED, OnPopupClosed);
     }
 
     private void OnDestroy()
     {
         Messenger<float>.RemoveListener(GameEvent.HEALTH_CHANGED, OnHealthChanged);
+        Messenger.RemoveListener(GameEvent.POPUP_OPENED, OnPopupOpened);
+        Messenger.RemoveListener(GameEvent.POPUP_CLOSED, OnPopupClosed);
     }
 
 
@@ -109,5 +130,23 @@ public class UIController : MonoBehaviour
         healthBar.fillAmount = healthPercent;
         healthBar.color = Color.Lerp(Color.red, Color.green, healthPercent);
 
+    }
+
+    void OnPopupOpened()
+    {
+        if (popupsActive == 0)
+        {
+            SetGameActive(false);
+        }
+        popupsActive++;
+    }
+
+    void OnPopupClosed()
+    {
+        popupsActive--;
+        if (popupsActive == 0) 
+        {
+            SetGameActive(true);
+        }
     }
 }
