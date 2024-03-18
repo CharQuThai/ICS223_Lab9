@@ -40,7 +40,6 @@ public class OptionsPopup : BasePopup
         Debug.Log("return to game");
 
         //    uiController.SetGameActive(true);
-        //}
         Close();
     }
 }

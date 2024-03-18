@@ -12,6 +12,8 @@ public class WanderingAI : MonoBehaviour
 
     private EnemyStates state;
 
+
+
     [SerializeField] private GameObject laserbeamPrefab;
     private GameObject laserbeam;
 
@@ -83,5 +85,6 @@ public class WanderingAI : MonoBehaviour
     {
         Debug.Log("WanderingAI.SetDifficulty(" + difficulty + ")");
         enemySpeed = baseSpeed + (difficulty * difficultySpeedDelta);
+
     }
 }

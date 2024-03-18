@@ -11,12 +11,6 @@ public class SettingPopup : BasePopup
     public UIController uiController;
     [SerializeField] private OptionsPopup optionsPopup;
 
-
-    public void Start()
-    {
-
-    }
-
     public void OnOKButton()
     {
         Debug.Log("OK button clicked");

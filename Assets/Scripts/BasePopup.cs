@@ -17,7 +17,7 @@ public class BasePopup : MonoBehaviour
         }
         else
         {
-            Debug.LogError(this + ".Open() – trying to open a popup that is active!");
+            Debug.Log(this + ".Open() – trying to open a popup that is active!");
         }
     }
     virtual public void Close()
@@ -30,7 +30,7 @@ public class BasePopup : MonoBehaviour
         }
         else
         {
-            Debug.LogError(this + ".Close() – trying to close a popup that is not active!");
+            Debug.Log(this + ".Close() – trying to close a popup that is not active!");
         }
     }
     public bool IsActive()
