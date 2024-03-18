@@ -43,6 +43,7 @@ public class UIController : MonoBehaviour
         //    SetGameActive(false);
         //    optionsPopup.Open();
         //}
+
         //if (Input.GetKeyDown(KeyCode.Escape))
         //{
         //    if (!optionsPopup.IsActive() && !settingPopup.IsActive())
@@ -71,15 +72,8 @@ public class UIController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && popupsActive == 0)
         {
 
-            if (!optionsPopup.IsActive())
-            {
-                if (settingPopup.IsActive())
-                    settingPopup.Close();
-            }
-            else
-            {
                 optionsPopup.Open();
-            }
+            
         }
     }
 
@@ -118,8 +112,9 @@ public class UIController : MonoBehaviour
     private void OnDestroy()
     {
         Messenger<float>.RemoveListener(GameEvent.HEALTH_CHANGED, OnHealthChanged);
-        Messenger.RemoveListener(GameEvent.POPUP_OPENED, OnPopupOpened);
         Messenger.RemoveListener(GameEvent.POPUP_CLOSED, OnPopupClosed);
+        Messenger.RemoveListener(GameEvent.POPUP_OPENED, OnPopupOpened);
+
     }
 
 
